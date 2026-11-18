@@ -1,0 +1,21 @@
+---
+import { site } from '../lib/site';
+
+interface Props {
+  variant?: 'primary' | 'on-dark';
+}
+const { variant = 'primary' } = Astro.props;
+const cls = `button button-${variant}`;
+---
+
+{
+  site.playStoreUrl ? (
+    <a class={cls} href={site.playStoreUrl} rel="noopener">
+      Get it on Google Play
+    </a>
+  ) : (
+    <span class={cls} aria-disabled="true">
+      Coming soon to Google Play
+    </span>
+  )
+}

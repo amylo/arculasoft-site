@@ -1,0 +1,16 @@
+---
+import { getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+// Copied verbatim from the app repo's docs/legal/privacy-policy.md (`npm run sync`).
+// This URL (/privacy/) is the one given to app stores; keep it stable.
+const entry = await getEntry('legal', 'privacy-policy');
+if (!entry) throw new Error('Missing src/content/legal/privacy-policy.md. Run `npm run sync`.');
+const { Content } = await render(entry);
+---
+
+<Base title="Privacy policy" description="How Arcula handles your information: it stays on your device.">
+  <article class="prose">
+    <Content />
+  </article>
+</Base>

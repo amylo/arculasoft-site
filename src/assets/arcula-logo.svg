@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Arcula">
+  <!-- Coin / token disc (brand indigo) -->
+  <circle cx="256" cy="256" r="243" fill="#4F46E5"/>
+  <!-- Peaked chest / "A" mark in gold; keyhole cut back to the disc -->
+  <path fill="#FFCA28" d="M138 246
+           L256 118
+           L374 246
+           L374 379
+           Q374 404 348 404
+           L164 404
+           Q138 404 138 379 Z"/>
+  <!-- Keyhole: ring + straight slot, cut back to disc colour -->
+  <circle cx="256" cy="274" r="41" fill="#4F46E5"/>
+  <rect x="235" y="274" width="42" height="90" fill="#4F46E5"/>
+</svg>
