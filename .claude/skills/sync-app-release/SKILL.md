@@ -46,7 +46,8 @@ git diff --stat
 ```
 
 `git status` may list files whose only difference is CRLF vs LF; `git diff --stat` shows the
-real changes. Review every real change:
+real changes. Discard the line-ending-only ones with `git checkout -- <file>` so they don't
+end up in the commit. Review every real change:
 
 - `src/content/release-notes.md`: expected.
 - `src/content/legal/privacy-policy.md`: the `/privacy/` URL is what app stores point at. Read
