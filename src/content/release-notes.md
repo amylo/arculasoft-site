@@ -30,6 +30,19 @@ the generator refuses to write. Prose above the first `##` (this preamble) is ig
 
 ## Unreleased
 
+## 0.10.1 — 2026-11-17
+
+- New: Dates you enter can't be in the future; calendars stop at today.
+- New: Your Transactions search and filters stay in place while Arcula is open.
+- New: Sync conflicts show icons as icons, with their names.
+- Fixed: Arcula no longer uses battery in the background, and Android no longer closes it for that.
+- Fixed: Pressing Cancel when connecting a cloud account no longer says your sign-in has expired.
+- Fixed: Connecting a cloud account again no longer reopens an old browser page.
+- Fixed: The success screen now appears after a CSV import.
+- Fixed: The date picker shows proper labels instead of code words.
+- Fixed: The keyboard no longer covers Update balance when you change its date.
+- Fixed: Empty screens' titles now match the rest of the app.
+
 ## 0.10.0 — 2026-11-12
 
 - New: The Home and Transactions headers shrink as you scroll, leaving more room for your list.
