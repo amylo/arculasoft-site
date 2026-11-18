@@ -1,0 +1,23 @@
+---
+import logo from '../assets/arcula-logo.svg?raw';
+
+interface Props {
+  size?: number;
+}
+const { size = 32 } = Astro.props;
+---
+
+<span class="logo" style={`--size: ${size}px`} aria-hidden="true" set:html={logo} />
+
+<style>
+  .logo {
+    display: inline-block;
+    width: var(--size);
+    height: var(--size);
+    flex: none;
+  }
+  .logo :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+</style>

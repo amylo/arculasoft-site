@@ -1,0 +1,65 @@
+---
+import Base from '../layouts/Base.astro';
+import { parseReleaseNotes, formatDate } from '../lib/releaseNotes';
+
+const releases = parseReleaseNotes();
+---
+
+<Base title="Release notes" description="What's new and fixed in each version of Arcula.">
+  <div class="prose">
+    <h1>Release notes</h1>
+    {
+      releases.map((r) => (
+        <section id={`v${r.version}`}>
+          <h2>
+            {r.version} <time datetime={r.date}>{formatDate(r.date)}</time>
+          </h2>
+          <ul>
+            {r.notes.map((n) => (
+              <li>
+                <span class:list={['tag', n.kind.toLowerCase()]}>{n.kind}</span> {n.text}
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+  </div>
+</Base>
+
+<style>
+  h2 time {
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--color-on-surface-variant);
+    margin-left: var(--space-2);
+  }
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+  }
+  .tag {
+    flex: none;
+    min-width: 4.5em;
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: var(--space-half) var(--space-2);
+    border-radius: 999px;
+  }
+  .new {
+    background: var(--color-primary-container);
+    color: var(--color-on-primary-container);
+  }
+  .fixed {
+    background: var(--color-income-container);
+    color: var(--color-on-income-container);
+  }
+</style>

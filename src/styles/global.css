@@ -1,0 +1,152 @@
+@import '@fontsource/lato/400.css';
+@import '@fontsource/lato/700.css';
+
+/* Site-only brand values not in the app token set (from the logo / DESIGN.md). */
+:root {
+  --brand-gold: #ffca28;
+  --brand-gradient: linear-gradient(135deg, #4f46e5 0%, #463dd0 50%, #362fb0 100%);
+  --content-width: 1080px;
+  --prose-width: 720px;
+  --radius-card: 20px;
+  --font-sans: 'Lato', system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--color-on-background);
+  background: var(--color-background);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-primary);
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+  padding-inline: var(--space-screen-edge);
+}
+
+.prose {
+  max-width: var(--prose-width);
+  margin-inline: auto;
+  padding: var(--space-9) var(--space-screen-edge) var(--space-10);
+}
+
+.prose h1 {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+}
+
+.prose h2 {
+  margin-top: var(--space-8);
+  font-size: 1.4rem;
+}
+
+.prose hr {
+  border: 0;
+  border-top: 1px solid var(--color-outline-variant);
+  margin-block: var(--space-7);
+}
+
+.prose li + li {
+  margin-top: var(--space-1);
+}
+
+.prose table {
+  border-collapse: collapse;
+  width: 100%;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--color-outline-variant);
+  padding: var(--space-2) var(--space-3);
+  text-align: left;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-min-touch-target);
+  padding: 0 var(--space-6);
+  border-radius: 999px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color var(--motion-duration-quick) var(--motion-easing-standard);
+}
+
+.button-primary {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.button-primary:hover {
+  background: var(--color-on-primary-container);
+}
+
+.button-on-dark {
+  background: var(--brand-gold);
+  color: #16165c;
+}
+
+.button-on-dark:hover {
+  background: #ffd75e;
+}
+
+.button[aria-disabled='true'] {
+  cursor: default;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
