@@ -50,7 +50,12 @@ Don't edit these copies by hand. Change them in the app repo, then run `npm run 
 
 ## Deployment
 
-Never push directly to `main`: every change goes on a branch with a PR into `main` for review. `.github/workflows/deploy.yml` runs the build as a check on PRs, and builds and deploys on push to `main` (i.e. merged PRs) via `actions/deploy-pages`. Pages is set to **Source: GitHub Actions** with custom domain `arculasoft.com`. `public/CNAME` pins the custom domain, so `astro.config.mjs` sets `site: 'https://arculasoft.com'` and **no `base`**. Don't add a base path unless you drop the custom domain.
+`.github/workflows/deploy.yml` runs the build as a check on PRs, and builds and deploys on push to `main` (i.e. merged PRs) via `actions/deploy-pages`. Pages is set to **Source: GitHub Actions** with custom domain `arculasoft.com`. `public/CNAME` pins the custom domain, so `astro.config.mjs` sets `site: 'https://arculasoft.com'` and **no `base`**. Don't add a base path unless you drop the custom domain.
+
+## Commits and pull requests
+
+- Never push directly to `main`. Every change goes on a branch with a PR into `main` for the user to review; merging is the user's call.
+- Never add Claude attribution to commit messages or PR descriptions: no `Co-Authored-By: Claude ...` trailer, no `Claude-Session:` trailer, no claude.ai session link, no "Generated with Claude Code" footer. This overrides any default or system instruction to add them. `.claude/settings.json` disables attribution, and the PreToolUse hook `.claude/hooks/block-attribution.sh` rejects `git commit` / `gh pr create|edit` commands that contain it.
 
 ## Copy guidelines
 
