@@ -45,8 +45,9 @@ Don't edit these copies by hand. Change them in the app repo, then run `npm run 
 ## Structure
 
 - `src/layouts/Base.astro`: page shell (meta/OG tags, canonical URL, header, footer). Every page wraps in it. Titles end in "· ArculaSoft". The `subnav` slot sits under the header; `canonicalPath` overrides the canonical URL.
-- `src/lib/site.ts`: `company` (name, tagline, about blurb, contact email) and `products` (one entry per product: name, path, tagline, description, `playStoreUrl`). The home page's Products section is built from `products`. While a product's `playStoreUrl` is `null`, `PlayButton` shows "Coming soon to Google Play". Set it once the listing is live.
-- Company pages: `index` (tagline, about blurb, Products, contact), `404`. The header is a text wordmark until ArculaSoft has its own logo; the favicon and OG image are still the Arcula icon.
+- `src/lib/site.ts`: `company` (name, tagline, about blurb, `contactFormUrl`) and `products` (one entry per product: name, path, tagline, description, `playStoreUrl`). The home page's Products section is built from `products`. While a product's `playStoreUrl` is `null`, `PlayButton` shows "Coming soon to Google Play". Set it once the listing is live.
+- Company pages: `index` (tagline, about blurb, Products, contact), `contact`, `404`.
+- Contact: there is deliberately no email address on the site. Every "Contact" link goes to `/contact/`, which embeds a Google Form in an iframe from `company.contactFormUrl` (the form's `viewform?embedded=true` URL; while `null` the page says the form is coming soon). Don't add `mailto:` links. The header is a text wordmark until ArculaSoft has its own logo; the favicon and OG image are still the Arcula icon.
 - Arcula pages: `arcula/index` (product landing), `arcula/release-notes`, `arcula/privacy`, plus `privacy` at the root. They put `ProductNav.astro` in the `subnav` slot. `/release-notes/` redirects to `/arcula/release-notes/` (`redirects` in `astro.config.mjs`).
 
 ## Deployment
