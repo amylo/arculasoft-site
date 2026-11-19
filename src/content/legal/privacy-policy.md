@@ -165,4 +165,4 @@ behaviour takes effect.
 
 Questions about this policy or about privacy in Arcula:
 
-**Amy Lo** — **amy.arcula@gmail.com**
+**Amy Lo** — [arculasoft.com/contact](https://arculasoft.com/contact/)
