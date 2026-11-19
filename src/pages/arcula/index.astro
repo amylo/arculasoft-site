@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import ArculaLogo from '../../components/ArculaLogo.astro';
 import PlayButton from '../../components/PlayButton.astro';
 import ProductNav from '../../components/ProductNav.astro';
-import { arcula, company } from '../../lib/site';
+import { arcula } from '../../lib/site';
 import { parseReleaseNotes } from '../../lib/releaseNotes';
 
 const latest = parseReleaseNotes()[0];
@@ -136,7 +136,7 @@ const features = [
       <h2>Your money. Your device. Nobody else’s business.</h2>
       <PlayButton product={arcula} variant="on-dark" />
       <p>
-        Questions? <a href={`mailto:${company.contactEmail}`}>{company.contactEmail}</a>
+        Questions? <a href="/contact/">Get in touch</a>
       </p>
     </div>
   </section>

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { company } from '../lib/site';
+
+// The embedded Google Form keeps the contact address off the site.
+const formUrl = company.contactFormUrl;
+// Same form without the embed flag, for the "open in a new tab" fallback.
+const directUrl = formUrl?.replace(/[?&]embedded=true/, '');
+---
+
+<Base title="Contact" description={`Send a question or feedback to ${company.name}.`}>
+  <div class="prose">
+    <h1>Contact</h1>
+    {
+      formUrl ? (
+        <>
+          <p>
+            Questions, feedback or bug reports are welcome. Send a message with the form below.
+          </p>
+          <div class="form-frame">
+            <iframe src={formUrl} title={`Contact ${company.name}`} loading="lazy">
+              Loading…
+            </iframe>
+          </div>
+          <p class="fallback">
+            Form not loading? <a href={directUrl} target="_blank" rel="noopener">Open it in a new tab</a>.
+          </p>
+        </>
+      ) : (
+        <p>The contact form is coming soon.</p>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .form-frame {
+    margin-block: var(--space-6);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 12px;
+    overflow: hidden;
+    /* Google Forms renders on white in both themes. */
+    background: #fff;
+  }
+  iframe {
+    display: block;
+    width: 100%;
+    /* Google's embed code suggests 897px; narrow screens wrap the form taller. */
+    height: 920px;
+    border: 0;
+  }
+  @media (max-width: 600px) {
+    iframe {
+      height: 1100px;
+    }
+  }
+  .fallback {
+    color: var(--color-on-surface-variant);
+    font-size: 0.9rem;
+  }
+</style>
