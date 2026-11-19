@@ -12,17 +12,27 @@ const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
 const px = (n) => `${n}px`;
 const bezier = (e) => `cubic-bezier(${e.join(', ')})`;
 
+// Older exports kept chart colors in a separate `color.chart.{light,dark}`
+// group; newer ones put them in `color.{light,dark}` as `chartCat1`… (which
+// kebab-cases to the same `--color-chart-cat1` names).
 function colors(mode) {
   const out = [];
   for (const [k, v] of Object.entries(tokens.color[mode])) out.push(`--color-${kebab(k)}: ${v};`);
-  for (const [k, v] of Object.entries(tokens.color.chart[mode])) out.push(`--color-chart-${kebab(k)}: ${v};`);
+  for (const [k, v] of Object.entries(tokens.color.chart?.[mode] ?? {})) out.push(`--color-chart-${kebab(k)}: ${v};`);
   return out;
 }
+
+// Newer exports have one type scale per in-app Text Size setting
+// (`type.scale.{small,medium,large}`); use the app's default, Medium. Older
+// exports have a single flat scale of roles.
+const typeScale = tokens.type.scale.medium ?? tokens.type.scale;
 
 const base = [];
 for (const [k, v] of Object.entries(tokens.space.scale)) base.push(`--space-${k}: ${px(v)};`);
 for (const [k, v] of Object.entries(tokens.space.alias)) base.push(`--space-${kebab(k)}: ${px(v)};`);
-for (const [k, v] of Object.entries(tokens.type.scale)) {
+// Mode-independent colors (newer exports only).
+for (const [k, v] of Object.entries(tokens.color.fixed ?? {})) base.push(`--color-${kebab(k)}: ${v};`);
+for (const [k, v] of Object.entries(typeScale)) {
   const n = kebab(k);
   base.push(
     `--type-${n}-size: ${px(v.size)};`,
