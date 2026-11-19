@@ -12,7 +12,10 @@ export const company = {
    *  ending in `viewform?embedded=true`). Shown on /contact/ in an iframe so
    *  no email address is published on the site. While null, /contact/ says
    *  the form is coming soon. */
-  contactFormUrl: null as string | null,
+  contactFormUrl:
+    'https://docs.google.com/forms/d/e/1FAIpQLSf5zujQPNdJcfEpPXijUYtGGkXkFihBCKLefFqhBYnF4yfYcQ/viewform?embedded=true' as
+      | string
+      | null,
 };
 
 export interface Product {

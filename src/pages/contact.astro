@@ -45,8 +45,14 @@ const directUrl = formUrl?.replace(/[?&]embedded=true/, '');
   iframe {
     display: block;
     width: 100%;
-    height: 1100px;
+    /* Google's embed code suggests 897px; narrow screens wrap the form taller. */
+    height: 920px;
     border: 0;
+  }
+  @media (max-width: 600px) {
+    iframe {
+      height: 1100px;
+    }
   }
   .fallback {
     color: var(--color-on-surface-variant);
