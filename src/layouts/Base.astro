@@ -3,16 +3,18 @@ import '../styles/tokens.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { site } from '../lib/site';
+import { company } from '../lib/site';
 
 interface Props {
   title?: string;
   description?: string;
+  /** Override when the same content is served at another, preferred URL. */
+  canonicalPath?: string;
 }
 
-const { title, description = site.description } = Astro.props;
-const fullTitle = title ? `${title} · ${site.name}` : `${site.name} · ${site.tagline}`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description = company.description, canonicalPath = Astro.url.pathname } = Astro.props;
+const fullTitle = title ? `${title} · ${company.name}` : `${company.name} · ${company.tagline}`;
+const canonical = new URL(canonicalPath, Astro.site);
 ---
 
 <!doctype html>
@@ -27,7 +29,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="theme-color" content="#4F46E5" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content={site.name} />
+    <meta property="og:site_name" content={company.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -36,6 +38,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   <body>
     <a class="visually-hidden" href="#main">Skip to content</a>
     <Header />
+    <slot name="subnav" />
     <main id="main">
       <slot />
     </main>

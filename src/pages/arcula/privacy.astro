@@ -1,0 +1,16 @@
+---
+import Base from '../../layouts/Base.astro';
+import ProductNav from '../../components/ProductNav.astro';
+import PrivacyPolicy from '../../components/PrivacyPolicy.astro';
+
+// Same policy as /privacy/, which stays the canonical URL (app stores link to it).
+---
+
+<Base
+  title="Arcula privacy policy"
+  description="How Arcula handles your information: it stays on your device."
+  canonicalPath="/privacy/"
+>
+  <ProductNav slot="subnav" />
+  <PrivacyPolicy />
+</Base>

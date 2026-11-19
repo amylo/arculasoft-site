@@ -1,0 +1,281 @@
+---
+import Base from '../../layouts/Base.astro';
+import ArculaLogo from '../../components/ArculaLogo.astro';
+import PlayButton from '../../components/PlayButton.astro';
+import ProductNav from '../../components/ProductNav.astro';
+import { arcula, company } from '../../lib/site';
+import { parseReleaseNotes } from '../../lib/releaseNotes';
+
+const latest = parseReleaseNotes()[0];
+
+const pillars = [
+  {
+    title: 'Stays on your phone',
+    body: 'Everything you enter is stored only on your device, encrypted. There is no Arcula account and no Arcula server.',
+  },
+  {
+    title: 'Backups go to your cloud',
+    body: 'Optional backup saves one file to your own Google Drive, OneDrive or Dropbox. We never see it.',
+  },
+  {
+    title: 'No bank linking',
+    body: 'Arcula never asks for your bank login. Bring in transactions by importing your bank’s own CSV export.',
+  },
+  {
+    title: 'No ads, no trackers',
+    body: 'No analytics, no advertising and no third-party data collection anywhere in the app.',
+  },
+];
+
+const features = [
+  {
+    title: 'Net worth at a glance',
+    body: 'Assets and liabilities in one place, with a chart you can drag to read any point in time.',
+  },
+  {
+    title: 'Fast batch logging',
+    body: 'Catch up at the end of the day or on a Sunday. New Transaction starts with the amount, and Categorize sorts the rest.',
+  },
+  {
+    title: 'CSV import',
+    body: 'Import your bank’s export instead of typing every transaction by hand.',
+  },
+  {
+    title: 'Each currency on its own',
+    body: 'Hold money in several currencies without a blended total built on a rate you didn’t choose.',
+  },
+  {
+    title: 'How this month is going',
+    body: 'Home compares this month with the same days of last month, so you know where you stand.',
+  },
+  {
+    title: 'Lock it down',
+    body: 'Require unlock to open the app, so your numbers stay yours even if someone picks up your phone.',
+  },
+];
+---
+
+<Base title={`${arcula.name}: ${arcula.tagline}`} description={arcula.description}>
+  <ProductNav slot="subnav" />
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <h1>{arcula.tagline}</h1>
+        <p class="lede">
+          {arcula.name} is a personal finance app that works fully offline. No account, no server, no bank
+          logins. Just an accurate, private record of what you spend and what you’re worth.
+        </p>
+        <div class="cta">
+          <PlayButton product={arcula} variant="on-dark" />
+          <span class="platform">{arcula.platforms}</span>
+        </div>
+      </div>
+      <div class="hero-mark">
+        <ArculaLogo size={240} />
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" aria-labelledby="privacy-heading">
+    <div class="container">
+      <h2 id="privacy-heading">Private by design, not by promise</h2>
+      <p class="section-lede">
+        Arcula can’t leak your data because it never has it. That’s how the app is built, not just a policy.
+      </p>
+      <ul class="grid">
+        {
+          pillars.map((p) => (
+            <li class="card card-tinted">
+              <h3>{p.title}</h3>
+              <p>{p.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section id="features" class="features" aria-labelledby="features-heading">
+    <div class="container">
+      <h2 id="features-heading">Built for people who track carefully</h2>
+      <ul class="grid">
+        {
+          features.map((f) => (
+            <li class="card">
+              <h3>{f.title}</h3>
+              <p>{f.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  {
+    latest && (
+      <section class="latest" aria-labelledby="latest-heading">
+        <div class="container latest-inner">
+          <div>
+            <h2 id="latest-heading">What’s new in {latest.version}</h2>
+            <ul>
+              {latest.notes.slice(0, 4).map((n) => (
+                <li>{n.text}</li>
+              ))}
+            </ul>
+          </div>
+          <a class="button button-primary" href={`${arcula.path}release-notes/`}>
+            All release notes
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="closing">
+    <div class="container closing-inner">
+      <h2>Your money. Your device. Nobody else’s business.</h2>
+      <PlayButton product={arcula} variant="on-dark" />
+      <p>
+        Questions? <a href={`mailto:${company.contactEmail}`}>{company.contactEmail}</a>
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero,
+  .closing {
+    background: var(--brand-gradient);
+    color: #fff;
+  }
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    align-items: center;
+    gap: var(--space-9);
+    padding-block: var(--space-10);
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 7vw, 3.8rem);
+    margin: 0 0 var(--space-5);
+  }
+  .lede {
+    font-size: 1.2rem;
+    max-width: 34em;
+    opacity: 0.92;
+    margin: 0 0 var(--space-7);
+  }
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .platform {
+    opacity: 0.8;
+    font-size: 0.95rem;
+  }
+  .hero-mark {
+    justify-self: center;
+    filter: drop-shadow(0 24px 48px rgb(0 0 0 / 0.3));
+  }
+
+  section h2 {
+    font-size: clamp(1.7rem, 4vw, 2.3rem);
+    margin: 0 0 var(--space-4);
+  }
+  .pillars,
+  .features {
+    padding-block: var(--space-10);
+  }
+  .features {
+    background: var(--color-surface-container-low);
+  }
+  .section-lede {
+    font-size: 1.1rem;
+    color: var(--color-on-surface-variant);
+    max-width: 40em;
+    margin: 0 0 var(--space-8);
+  }
+  .features h2 {
+    margin-bottom: var(--space-8);
+  }
+  .grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+    gap: var(--space-5);
+  }
+  .card {
+    background: var(--color-surface-container-lowest);
+    border: 1px solid var(--color-outline-variant);
+    border-radius: var(--radius-card);
+    padding: var(--space-6);
+  }
+  .card-tinted {
+    background: var(--color-primary-container);
+    border-color: transparent;
+    color: var(--color-on-primary-container);
+  }
+  .card h3 {
+    margin: 0 0 var(--space-2);
+    font-size: 1.15rem;
+  }
+  .card p {
+    margin: 0;
+  }
+  .card:not(.card-tinted) p {
+    color: var(--color-on-surface-variant);
+  }
+
+  .latest {
+    padding-block: var(--space-9);
+  }
+  .latest-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-6);
+  }
+  .latest ul {
+    margin: 0;
+    padding-left: 1.2em;
+    color: var(--color-on-surface-variant);
+  }
+
+  .closing-inner {
+    text-align: center;
+    padding-block: var(--space-10);
+    display: grid;
+    justify-items: center;
+    gap: var(--space-5);
+  }
+  .closing h2 {
+    margin: 0;
+  }
+  .closing p {
+    margin: 0;
+    opacity: 0.9;
+  }
+  .closing a {
+    color: #fff;
+  }
+
+  @media (max-width: 760px) {
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding-block: var(--space-9);
+    }
+    .hero-mark {
+      grid-row: 1;
+      justify-self: start;
+    }
+    .hero-mark :global(.logo) {
+      width: 96px;
+      height: 96px;
+    }
+  }
+</style>

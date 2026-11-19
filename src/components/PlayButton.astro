@@ -1,16 +1,17 @@
 ---
-import { site } from '../lib/site';
+import type { Product } from '../lib/site';
 
 interface Props {
+  product: Product;
   variant?: 'primary' | 'on-dark';
 }
-const { variant = 'primary' } = Astro.props;
+const { product, variant = 'primary' } = Astro.props;
 const cls = `button button-${variant}`;
 ---
 
 {
-  site.playStoreUrl ? (
-    <a class={cls} href={site.playStoreUrl} rel="noopener">
+  product.playStoreUrl ? (
+    <a class={cls} href={product.playStoreUrl} rel="noopener">
       Get it on Google Play
     </a>
   ) : (

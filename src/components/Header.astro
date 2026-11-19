@@ -1,20 +1,15 @@
 ---
-import Logo from './Logo.astro';
-import { site } from '../lib/site';
+import { company } from '../lib/site';
 
 const links = [
-  { href: '/#features', label: 'Features' },
-  { href: '/release-notes/', label: "What's new" },
-  { href: '/privacy/', label: 'Privacy' },
+  { href: '/#products', label: 'Products' },
+  { href: `mailto:${company.contactEmail}`, label: 'Contact' },
 ];
 ---
 
 <header class="header">
   <div class="container inner">
-    <a href="/" class="brand">
-      <Logo size={32} />
-      <span>{site.name}</span>
-    </a>
+    <a href="/" class="brand">{company.name}</a>
     <nav aria-label="Main">
       <ul>
         {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
@@ -36,12 +31,11 @@ const links = [
     min-height: 64px;
     flex-wrap: wrap;
   }
+  /* Text wordmark until ArculaSoft has its own logo. */
   .brand {
-    display: inline-flex;
-    align-items: center;
-    gap: var(--space-2);
     font-weight: 700;
     font-size: 1.2rem;
+    letter-spacing: -0.01em;
     color: var(--color-on-surface);
     text-decoration: none;
   }
@@ -59,13 +53,5 @@ const links = [
   }
   nav a:hover {
     color: var(--color-primary);
-  }
-  @media (max-width: 480px) {
-    ul {
-      gap: var(--space-4);
-    }
-    nav a {
-      font-size: 0.875rem;
-    }
   }
 </style>

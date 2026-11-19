@@ -50,14 +50,15 @@ real changes. Discard the line-ending-only ones with `git checkout -- <file>` so
 end up in the commit. Review every real change:
 
 - `src/content/release-notes.md`: expected.
-- `src/content/legal/privacy-policy.md`: the `/privacy/` URL is what app stores point at. Read
+- `src/content/legal/privacy-policy.md`: served at `/privacy/` (what app stores point at) and `/arcula/privacy/`. Read
   the diff and call out the change to the user in the summary.
 - tokens / logo / icon: note visual changes; check the dev server or build if they're large.
 
 ## 4. Check marketing copy
 
-The "What's new" block and `/release-notes/` update automatically. The hand-written copy in
-`src/pages/index.astro` (privacy points, feature cards, hero) does not. For each new entry:
+The "What's new" block and `/arcula/release-notes/` update automatically. The hand-written copy in
+`src/pages/arcula/index.astro` (privacy points, feature cards, hero) and the Arcula entry in
+`src/lib/site.ts` do not. For each new entry:
 
 - Does it contradict anything on the site? (e.g. a feature removed or renamed, a different
   screen label.) Fix the copy.
@@ -72,7 +73,7 @@ analytics/ads, Android only, no pricing.
 
 ```bash
 npm run build
-grep -o "What’s new in [0-9.]*" dist/index.html   # should show the new version
+grep -o "What’s new in [0-9.]*" dist/arcula/index.html   # should show the new version
 ```
 
 Fix any `astro check` failure before continuing. A parse failure in `src/lib/releaseNotes.ts`

@@ -1,13 +1,15 @@
 ---
-import Base from '../layouts/Base.astro';
-import { parseReleaseNotes, formatDate } from '../lib/releaseNotes';
+import Base from '../../layouts/Base.astro';
+import ProductNav from '../../components/ProductNav.astro';
+import { parseReleaseNotes, formatDate } from '../../lib/releaseNotes';
 
 const releases = parseReleaseNotes();
 ---
 
-<Base title="Release notes" description="What's new and fixed in each version of Arcula.">
+<Base title="Arcula release notes" description="What's new and fixed in each version of Arcula.">
+  <ProductNav slot="subnav" />
   <div class="prose">
-    <h1>Release notes</h1>
+    <h1>Arcula release notes</h1>
     {
       releases.map((r) => (
         <section id={`v${r.version}`}>
