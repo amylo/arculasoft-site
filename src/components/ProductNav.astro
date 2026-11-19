@@ -1,0 +1,71 @@
+---
+// Secondary nav shown under the site header on a product's pages.
+import ArculaLogo from './ArculaLogo.astro';
+import { arcula } from '../lib/site';
+
+const links = [
+  { href: `${arcula.path}#features`, label: 'Features' },
+  { href: `${arcula.path}release-notes/`, label: "What's new" },
+  { href: `${arcula.path}privacy/`, label: 'Privacy' },
+];
+---
+
+<div class="product-nav">
+  <div class="container inner">
+    <a href={arcula.path} class="product">
+      <ArculaLogo size={28} />
+      <span>{arcula.name}</span>
+    </a>
+    <nav aria-label={arcula.name}>
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<style>
+  .product-nav {
+    border-bottom: 1px solid var(--color-outline-variant);
+    background: var(--color-surface-container-low);
+  }
+  .inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 52px;
+    flex-wrap: wrap;
+  }
+  .product {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-weight: 700;
+    color: var(--color-on-surface);
+    text-decoration: none;
+  }
+  ul {
+    display: flex;
+    gap: var(--space-5);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    color: var(--color-on-surface-variant);
+    text-decoration: none;
+    font-size: 0.95rem;
+  }
+  nav a:hover {
+    color: var(--color-primary);
+  }
+  @media (max-width: 480px) {
+    ul {
+      gap: var(--space-4);
+    }
+    nav a {
+      font-size: 0.875rem;
+    }
+  }
+</style>

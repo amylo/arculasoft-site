@@ -1,6 +1,6 @@
 # ArculaSoft website
 
-Product and marketing site for the Arcula app, served at https://arculasoft.com via GitHub Pages. Built with [Astro](https://astro.build).
+Company site for ArculaSoft, served at https://arculasoft.com via GitHub Pages. Products live under their own path; the Arcula app is at `/arcula/`. Built with [Astro](https://astro.build).
 
 ```bash
 npm install

@@ -1,15 +1,15 @@
 ---
-import { site } from '../lib/site';
+import { company } from '../lib/site';
 const year = new Date().getFullYear();
 ---
 
 <footer class="footer">
   <div class="container inner">
-    <p>© {year} {site.company}</p>
+    <p>© {year} {company.name}</p>
     <ul>
+      <li><a href="/#products">Products</a></li>
       <li><a href="/privacy/">Privacy policy</a></li>
-      <li><a href="/release-notes/">Release notes</a></li>
-      <li><a href={`mailto:${site.contactEmail}`}>Contact</a></li>
+      <li><a href={`mailto:${company.contactEmail}`}>Contact</a></li>
     </ul>
   </div>
 </footer>
